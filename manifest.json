@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "迅雷远程下载(非官方)",
+  "version": "1.0.1",
+
+  "description": "迅雷远程下载chrome插件，可以在连接上直接右键把连接发送到远程下载器。",
+  "icons": {
+    "16" : "assets/icon16.png",
+    "128": "assets/icon128.png"
+  },
+
+  "content_scripts" :[
+    {
+      "matches" : ["*://yuancheng.xunlei.com/*"],
+      "js" : ["assets/jquery-1.11.1.min.js","assets/download.js"]
+    }
+  ],
+
+  "default_locale" : "en",
+  "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+  },
+  "permissions": [
+    "contextMenus",
+    "*://yuancheng.xunlei.com/*",
+    //"cookies",
+    "*://homecloud.yuancheng.xunlei.com/*"
+  ]
+
+}
