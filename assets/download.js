@@ -57,6 +57,7 @@ var api = {
     callback : function(data){
         var json = JSON.parse(data);
         defaultpath = json.defaultPath;
+        if(defaultpath.length < 1){ defaultpath = "C:/TDDOWNLOAD/";}
         if(!!remain){
             defaultparam.url = local.download;
             defaultparam.type = 1;
