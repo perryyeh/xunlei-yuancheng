@@ -1,5 +1,5 @@
 function openYuancheng(info, tab) {
-  var url = "http://yuancheng.xunlei.com/?download="+ encodeURIComponent(info.linkUrl);
+  var url = "http://yc.xunlei.com/?download="+ encodeURIComponent(info.linkUrl);
   chrome.tabs.create({"url": url});
 }
 
