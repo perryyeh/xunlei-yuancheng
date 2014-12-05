@@ -57,7 +57,7 @@ var api = {
     callback : function(data){
         var json = JSON.parse(data);
         defaultpath = json.defaultPath;
-        if(defaultpath.length < 1){ defaultpath = "C:/TDDOWNLOAD/";}
+        if(!defaultpath){ defaultpath = "C:/TDDOWNLOAD/";}
         if(!!remain){
             defaultparam.url = local.download;
             defaultparam.type = 1;
@@ -104,7 +104,14 @@ var api = {
     },
     type : "text",
     callback : function(data){
-      console.log(data);
+      var json = JSON.parse(data);
+      console.log(json);
+      var gettasks = (json && json.tasks) || [];
+      for (var i = 0; i < gettasks.length; i++) {
+        var everytask = gettasks[i];
+        alert(everytask.name + result[""+(everytask.result || 65536)]);
+      };
+      //if(json.)
     }
   }
 }
@@ -136,7 +143,12 @@ function task(name,params){
       success: callback
     });
 }
-var remain,
+var result = {
+      "0":"提交失败",
+      "202":"重复提交",
+      "65536":"提交成功"
+    },
+    remain,
     defaultpath,
     local = param(),
     pid,
