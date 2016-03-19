@@ -1,7 +1,49 @@
+//config
+var config = {
+  //device list
+  "device" : "http://homecloud.yuancheng.xunlei.com/listPeer?type=0&v=2&ct=0",
+  //download url
+  "yuancheng" : "http://yc.xunlei.com/?download={download}&pid={pid}"
+}
+
+//get thunder device
+function getDevice(){
+  var json = [{
+    "name" : chrome.i18n.getMessage("defaultdevice"),
+    "pid" : "thunder",
+    "online" : "65535"
+  }];
+
+  var url = config.device;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", config.device, false);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+      var data = JSON.parse(xhr.responseText);
+      if (data && data.peerList) {
+        json =  data.peerList;
+      }
+    }
+  }
+  xhr.send();
+  return json;
+}
+
 function openYuancheng(info, tab) {
-  var url = "http://yc.xunlei.com/?download="+ encodeURIComponent(info.linkUrl);
+  var url = config.yuancheng;
+  url = url.replace("{download}", encodeURIComponent(info.linkUrl));
+  url = url.replace("{pid}",info.menuItemId);
   chrome.tabs.create({"url": url});
 }
 
 var title = chrome.i18n.getMessage("context_title");
-chrome.contextMenus.create({type: "normal", title: title, contexts: ["link"], onclick: openYuancheng});
+var device = getDevice();
+//add multiple device menu
+//but chrome collapses them to single, f**k
+for (var i = 0; i < device.length; i++) {
+  var menuTitle = title;
+  menuTitle = menuTitle.replace("{device}",device[i].name);
+  menuTitle = menuTitle.replace("{status}", chrome.i18n.getMessage("status"+device[i].online));
+  chrome.contextMenus.create({type: "normal", id: device[i].pid, title: menuTitle, contexts: ["link"], onclick: openYuancheng});
+}
+//alert(JSON.stringify(device));

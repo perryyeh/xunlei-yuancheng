@@ -22,8 +22,8 @@ function startdownload(){
     if(!local.download){
         return;
     }
-    var devices = $("[data-type='downloader-item'");
-        pid = devices.eq(0).attr("data-pid"),
+    var devices = $("[data-type='downloader-item']");
+        pid = local.pid ? local.pid : devices.eq(0).attr("data-pid"),
         defaultparam = {
             pid : pid,
             v : 2,
@@ -31,6 +31,10 @@ function startdownload(){
         }
     task("getremain", defaultparam);
     task("getsetting",defaultparam);
+    //展开默认设备
+    if (local.pid) {
+      $("[data-data='"+local.pid+"']").click();
+    }
 }
 var api = {
   server : "http://homecloud.yuancheng.xunlei.com/",
@@ -107,11 +111,10 @@ var api = {
       var json = JSON.parse(data);
       console.log(json);
       var gettasks = (json && json.tasks) || [];
-      for (var i = 0; i < gettasks.length; i++) {
-        var everytask = gettasks[i];
-        alert(everytask.name + result[""+(everytask.result || 65536)]);
-      };
-      //if(json.)
+      // for (var i = 0; i < gettasks.length; i++) {
+      //   var everytask = gettasks[i];
+      //   alert(everytask.name + result[""+(everytask.result || 65536)]);
+      // };
     }
   }
 }

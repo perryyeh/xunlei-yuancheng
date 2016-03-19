@@ -1,6 +1,22 @@
 {
   "context_title":{
-    "message" : "Download by 迅雷远程",
+    "message" : "下到{device}[{status}]",
     "description" : "右键菜单"
+  },
+  "status0":{
+    "message" : "离线",
+    "description": "状态"
+  },
+  "status1":{
+    "message" : "在线",
+    "description": "状态"
+  },
+  "status65535":{
+    "message" : "未知",
+    "description": "状态"
+  },
+  "defaultdevice":{
+    "message" : "请先登录",
+    "description": "默认设备名"
   }
 }

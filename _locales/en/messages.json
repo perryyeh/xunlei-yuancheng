@@ -1,6 +1,22 @@
 {
   "context_title":{
-    "message" : "Download by Thunder Yuancheng",
+    "message" : "Down to {device}[{status}]",
     "description" : "right click menu"
+  },
+  "status0":{
+    "message" : "offline",
+    "description": "status"
+  },
+  "status1":{
+    "message" : "online",
+    "description": "status"
+  },
+  "status65535":{
+    "message" : "unknown",
+    "description": "status"
+  },
+  "defaultdevice":{
+    "message" : "please login",
+    "description": "default device name"
   }
 }
