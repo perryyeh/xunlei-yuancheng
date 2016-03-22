@@ -29,6 +29,7 @@ function getDevice(){
   return json;
 }
 
+//click event
 function openYuancheng(info, tab) {
   var url = config.yuancheng;
   url = url.replace("{download}", encodeURIComponent(info.linkUrl));
@@ -39,7 +40,6 @@ function openYuancheng(info, tab) {
 //manage menu
 function manageMenu(){
   chrome.contextMenus.removeAll();
-
   var title = chrome.i18n.getMessage("context_title");
   var device = getDevice();
   //add multiple device menu
@@ -53,6 +53,12 @@ function manageMenu(){
   //alert(JSON.stringify(device));
 }
 
-//sync device & status @ 30s
+//add event
+chrome.alarms.onAlarm.addListener(function(alarm){
+    manageMenu();
+});
+
+//first get
 manageMenu();
-setInterval(manageMenu, 30000);
+//sync @ 2min
+chrome.alarms.create("sync", {periodInMinutes:2});
