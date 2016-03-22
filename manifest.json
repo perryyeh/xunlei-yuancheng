@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "迅雷远程下载(非官方)",
-  "version": "1.1.1",
+  "version": "1.2.1",
 
-  "description": "迅雷远程下载chrome插件，可以在连接上直接右键把下载发送到远程下载器。",
+  "description": "迅雷远程下载chrome插件，可以在连接上直接右键把下载发送到远程下载器，支持多设备。",
   "icons": {
     "16" : "assets/icon16.png",
     "128": "assets/icon128.png"
@@ -24,6 +24,7 @@
   "permissions": [
     "contextMenus",
     "tabs",
+    "alarms",
     "*://yc.xunlei.com/*",
     "*://homecloud.yuancheng.xunlei.com/*"
   ]
