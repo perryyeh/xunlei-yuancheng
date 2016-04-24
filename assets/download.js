@@ -31,7 +31,7 @@ function startdownload(){
         }
     task("getremain", defaultparam);
     task("getsetting",defaultparam);
-    //迅雷样式
+    //迅雷样式,暂时无效
     if (local.pid) {
       try{
         //展开默认设备
