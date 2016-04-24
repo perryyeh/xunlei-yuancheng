@@ -31,9 +31,17 @@ function startdownload(){
         }
     task("getremain", defaultparam);
     task("getsetting",defaultparam);
-    //展开默认设备
+    //迅雷样式
     if (local.pid) {
-      $("[data-data='"+local.pid+"']").click();
+      try{
+        //展开默认设备
+        XRD.dispatch("rClickDownloader",pid);
+        //弹窗提示
+        XRD.dispatch("popNewTaskOkay");
+        //刷新任务列表
+        XRD.dispatch("rTaskCreated");
+      }catch(e){
+      }
     }
 }
 var api = {
