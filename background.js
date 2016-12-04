@@ -3,7 +3,8 @@ var config = {
   //device list
   "device" : "http://homecloud.yuancheng.xunlei.com/listPeer?type=0&v=2&ct=0&_=" + Date.parse(new Date()),
   //download url
-  "yuancheng" : "http://yc.xunlei.com/?download={download}&pid={pid}"
+  "yuancheng" : "http://yc.xunlei.com/?download={download}&pid={pid}",
+  "xzb" : "http://yc.xzb.xunlei.com/?download={download}&pid={pid"
 }
 
 //get thunder device
